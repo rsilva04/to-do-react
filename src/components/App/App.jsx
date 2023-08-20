@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
 
+
 function App () {
 
   const [toDoListActivity, setToDoListActivity] = useState('');
@@ -13,7 +14,7 @@ function App () {
     .then((response) => {
       console.log(response);
       console.log(response.data);
-      setCreatureList(response.data);
+      setToDoListActivity(response.data);
     })
     .catch((error) => {
       console.log(error);
@@ -31,9 +32,7 @@ function App () {
       console.log(error);
     })
   }
-  }
-
-
+  
 
 
   useEffect(() => {
@@ -42,10 +41,11 @@ function App () {
 
   return (
     <div>
-      <h1>TO DO APP</h1>
-    </div>
+    <h1>TO DO APP</h1>
+   
+  </div>
   );
-
 }
-
+  
 export default App
+

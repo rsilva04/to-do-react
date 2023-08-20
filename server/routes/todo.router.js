@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
     const queryText = `INSERT INTO "todo" ("activity") VALUES ($1);`;
     pool.query(queryText, [req.body.activity])
     .then((result) => {
-        console.log(`Added activity to the database`);
+        console.log(`Added activity to the database`, result);
         res.sendStatus(201);
     })
     .catch((error) => {
@@ -33,7 +33,35 @@ router.post('/', (req, res) => {
 
 
 // PUT
+router.put('/complete/:id', (req,res) => {
+    let {id} = req.params;
+    let {complete} = req.body
+    let sqlText = `UPDATE "todo" SET "complete" = NOT "complete" WHERE "id" = $1;`;
+    pool.query(sqlText, [id])
+    .then((result) => {
+        console.log(`Updated stuff in database`, result);
+        res.sendStatus(201);
+    })
+    .catch((error) => {
+        console.log(`Error making query ${sqlText}`, error);
+        res.sendStatus(500);
+})
+})
+
 
 // DELETE
+router.delete('/:id', (req, res) => {
+    let { id } = req.params;
+    const queryText = 'DELETE FROM "todo" WHERE "id" = $1;';
+    pool.query(queryText, [id])
+    .then((response) => {
+        console.log('got stuff from database', response);
+        res.sendStatus(201);
+    })
+    .catch((error) => {
+        console.log('Error makign query', error);
+        res.sendStatus(500);
+    })
+})
 
 module.exports = router;
