@@ -20,6 +20,18 @@ function App () {
     })
   }
 
+  const addActivity = (event) => {
+    axios.post('/todo', {activity : toDoListActivity})
+    .then((response) => {
+      console.log(response);
+      console.log(response.data);
+      fetchList(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+  }
 
 
 

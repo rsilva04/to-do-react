@@ -18,6 +18,19 @@ router.get('/', (req, res) => {
 })
 
 // POST
+router.post('/', (req, res) => {
+    const queryText = `INSERT INTO "todo" ("activity") VALUES ($1);`;
+    pool.query(queryText, [req.body.activity])
+    .then((result) => {
+        console.log(`Added activity to the database`);
+        res.sendStatus(201);
+    })
+    .catch((error) => {
+        console.log(`Error making database query ${queryText}`, error);
+        res.sendStatus(500); // Good server always responds
+    })
+})
+
 
 // PUT
 
