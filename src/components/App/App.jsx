@@ -32,6 +32,28 @@ function App () {
       console.log(error);
     })
   }
+
+  const completeActivity = (id) => {
+    axios.put(`/todo/complete/${id}`)
+    .then((response) => {
+      console.log(response)
+      fetchList();
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
+  const deleteActivity = (id) => {
+    axios.delete(`/todo/${id}`)
+    .then((response) => {
+      console.log(response)
+      fetchList();
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
   
 
 
@@ -42,7 +64,11 @@ function App () {
   return (
     <div>
     <h1>TO DO APP</h1>
-   
+    <form onSubmit={addActivity}>
+        <label>Activity</label>
+        <input onChange={(event) => setToDoListActivity(event.target.value)} />
+        <button type="submit" >Add New Activity</button>
+      </form>
   </div>
   );
 }
