@@ -5,7 +5,6 @@ import axios from 'axios';
 function App () {
 
   const [toDoListActivity, setToDoListActivity] = useState('');
-  const [toDoListComplete, setToDoListComplete] = useState('false');
   const [toDoListArray, setToDoListArray] = useState([]);
 
 
@@ -14,7 +13,7 @@ function App () {
     .then((response) => {
       console.log(response);
       console.log(response.data);
-      setToDoListActivity(response.data);
+      setToDoListArray(response.data);
     })
     .catch((error) => {
       console.log(error);
@@ -27,6 +26,7 @@ function App () {
       console.log(response);
       console.log(response.data);
       fetchList(response.data);
+      setToDoListActivity('');
     })
     .catch((error) => {
       console.log(error);
@@ -54,9 +54,6 @@ function App () {
       console.log(error);
     })
   }
-  
-
-
   useEffect(() => {
     fetchList();
   }, []);
@@ -64,14 +61,22 @@ function App () {
   return (
     <div>
     <h1>TO DO APP</h1>
-    <form onSubmit={addActivity}>
-        <label>Activity</label>
-        <input onChange={(event) => setToDoListActivity(event.target.value)} />
+
+    <h2>Add Activity</h2>
+    <form id = "form" onSubmit={addActivity}>
+        <label id="activity">Activity:</label>
+        <input value={toDoListActivity} type="text" id="input" onChange={(event) => setToDoListActivity(event.target.value)} />
         <button type="submit" >Add New Activity</button>
       </form>
-  </div>
-  );
-}
+
+      {toDoListArray.map(todo =>
+      (<li key={todo.id}>
+        {todo.activity}
+        </li>
+       ))}
+</div>
+  )
+      }
   
-export default App
+export default App;
 
