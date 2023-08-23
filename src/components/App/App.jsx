@@ -76,14 +76,13 @@ function App() {
           <label id="activity">Activity:</label>
           <input value={toDoListActivity} type="text" id="input" onChange={(event) => setToDoListActivity(event.target.value)} />
           <button type="submit" >Add New Activity</button>
-          <button id="reset" onClick={() => resetTodo()}>Reset</button>
+          <button id="reset" onClick={() => resetTodo(id)}>Reset</button>
         </form>
         {toDoListArray.map(todo =>
         (<li key={todo.id}>
           {todo.activity}
         </li>
         ))}
-        <br></br> 
         <br></br> 
         <br></br> 
         <table>
