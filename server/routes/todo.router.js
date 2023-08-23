@@ -47,6 +47,19 @@ router.put('/complete/:id', (req,res) => {
         res.sendStatus(500);
 })
 })
+router.put('/reset', (req,res) => {
+    let {complete} = req.body;
+    console.log(req.body);
+    let sqlText = `UPDATE "todo" SET "complete" = $1`;
+    pool.query(sqlText, [complete])
+        .then((result) => {
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log(`Error making query ${sqlText}`, error);
+            res.sendStatus(500);
+        });
+    })
 
 
 // DELETE
