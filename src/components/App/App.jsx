@@ -4,6 +4,8 @@ import '@fontsource/roboto';
 
 // Material Components
 import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 
 function App() {
@@ -107,7 +109,8 @@ function App() {
 >             {activity.complete ? "Completed" : "Complete"}
             </button></td>
             {/* <td><button id="delete" onClick={() => deleteActivity(activity.id)}>Delete</button></td> */}
-            <Button id="delete" onClick={() => deleteActivity(activity.id)} color="secondary" variant="outlined">Delete</Button>
+            {/* <Button id="delete" onClick={() => deleteActivity(activity.id)} color="secondary" variant="outlined">Delete</Button> */}
+            <Button variant="outlined" onClick={() => deleteActivity(activity.id)} startIcon={<DeleteIcon />}>Delete</Button>
             </tr>
           ))}
         </tbody>
