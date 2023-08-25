@@ -106,7 +106,8 @@ function App() {
               completeActivity(activity.id)}
 >             {activity.complete ? "Completed" : "Complete"}
             </button></td>
-            <td><button id="delete" onClick={() => deleteActivity(activity.id)}>Delete</button></td>
+            {/* <td><button id="delete" onClick={() => deleteActivity(activity.id)}>Delete</button></td> */}
+            <Button id="delete" onClick={() => deleteActivity(activity.id)} color="secondary" variant="outlined">Delete</Button>
             </tr>
           ))}
         </tbody>
