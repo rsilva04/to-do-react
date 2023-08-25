@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import '@fontsource/roboto';
+
+// Material Components
+import Button from '@mui/material/Button';
 
 
 function App() {
@@ -75,7 +79,8 @@ function App() {
         <form id="form" onSubmit={addActivity}>
           <label id="activity">Activity:</label>
           <input onChange={(event) => setToDoListActivity(event.target.value)} />
-          <button type="submit" >Add New Activity</button>
+          {/* <button type="submit" >Add New Activity</button> */}
+          <Button color="success" variant="contained" type="submit">Add New Activity</Button>
           <button id="reset" onClick={(event) => resetTodo(id)}>Reset</button>
         </form>
         {toDoListArray.map(todo =>
