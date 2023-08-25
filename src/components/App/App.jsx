@@ -43,7 +43,7 @@ function App() {
         console.log(error);
       })
   }
-  const resetTodo = () => {
+  const resetTodo = (event) => {
     axios.put(`/todo/reset`, { complete: false })
       .then((response) => {
         fetchList();
@@ -74,9 +74,9 @@ function App() {
         <h2>Add Activity</h2>
         <form id="form" onSubmit={addActivity}>
           <label id="activity">Activity:</label>
-          <input value={toDoListActivity} type="text" id="input" onChange={(event) => setToDoListActivity(event.target.value)} />
+          <input onChange={(event) => setToDoListActivity(event.target.value)} />
           <button type="submit" >Add New Activity</button>
-          <button id="reset" onClick={() => resetTodo(id)}>Reset</button>
+          <button id="reset" onClick={(event) => resetTodo(id)}>Reset</button>
         </form>
         {toDoListArray.map(todo =>
         (<li key={todo.id}>
